@@ -15,14 +15,13 @@ a:hover, a:active { color: #c00; outline: 0; }
 
 pre, code { font-family: monospace, monospace; font-size: 1em; }
 ul, ol { margin: 1em 0; padding: 0 0 0 20px; }
-li img { border: 0; max-width: 100%; }
 
 body { background: #fff; }
 footer { max-width: 45em; margin: 0 auto; }
 
 .content { padding: 1em 1em; }
 .content li { list-style-type: none; font-size: 1.1em;}
-li img { float:left; padding-right: 1em; }
+li img { float:left; padding-right: 1em; border: 0; max-width: 100%; }
 li p { font-size: 0.9em; font-style: italic; }
 
 footer {

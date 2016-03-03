@@ -38,6 +38,22 @@ module.exports = function(grunt) {
       }
     },
 
+    // minifying HTML
+    htmlmin: {
+       dist: {
+          options: {
+             removeComments: true,
+             collapseWhitespace: true
+          },
+          files: [{
+             expand: true,
+             src: '**/*.html',
+             dest: 'dist/'
+          }]
+       }
+    },
+
+
     responsive_images: {
       dev: {
 
@@ -99,6 +115,7 @@ module.exports = function(grunt) {
     },
   });
 
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-responsive-images');
@@ -106,6 +123,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-mkdir');
   grunt.registerTask('images', ['clean', 'mkdir', 'copy', 'responsive_images']);
-  grunt.registerTask('minify', ['uglify', 'cssmin']);
+  grunt.registerTask('minify', ['uglify', 'cssmin', "htmlmin"]);
 
 };
