@@ -40,16 +40,16 @@ module.exports = function(grunt) {
           engine: 'im',
           sizes: [{
               name: 'small',
-              width: 70,
+              quality: 60,
+              width: 100
             },{
               name: 'medium',
-              width: 110
+              width: 100
             },{
               name: "large",
               width: 200,
-              separator: "-"
-              suffix: "_x2",
-              quality: 0.6
+              // suffix: "_x2"
+              // quality: 60
           }]
         },
 
