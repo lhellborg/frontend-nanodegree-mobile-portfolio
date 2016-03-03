@@ -509,9 +509,10 @@ function updatePositions() {
   for (var i = 0; i < items.length; i++) {
     //var phase = Math.sin(document.body.scrollTop / 1250) + (i % 5);
     // Returns a random number between min (inclusive) and max (exclusive)
-    var phase = Math.random() * (0.7 - (-0.7)) + (-0.7);
+    var phase = Math.random() * (1 - (-1)) + (-1);
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
+
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -524,7 +525,7 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+  window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
