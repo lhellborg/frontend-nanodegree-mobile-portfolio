@@ -14,9 +14,14 @@ module.exports = function(grunt) {
 
     // minifying the .js code and save it with a .min extension
     uglify: {
-      build: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
+       target: {
+        files: [{
+          expand: true,
+          cwd: 'js',
+          src: ['*.js', '!*.min.js'],
+          dest: 'js',
+          ext: '.min.js'
+        }]
       }
     },
 
@@ -25,9 +30,9 @@ module.exports = function(grunt) {
       target: {
         files: [{
           expand: true,
-          cwd: 'release/css',
+          cwd: 'css',
           src: ['*.css', '!*.min.css'],
-          dest: 'release/css',
+          dest: 'css',
           ext: '.min.css'
         }]
       }
