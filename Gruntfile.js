@@ -17,9 +17,9 @@ module.exports = function(grunt) {
        target: {
         files: [{
           expand: true,
-          cwd: 'js',
-          src: ['*.js', '!*.min.js'],
-          dest: 'js',
+          cwd: 'src',
+          src: ['**/*.js'],
+          dest: 'dist',
           ext: '.min.js'
         }]
       }
@@ -30,9 +30,9 @@ module.exports = function(grunt) {
       target: {
         files: [{
           expand: true,
-          cwd: 'css',
-          src: ['*.css', '!*.min.css'],
-          dest: 'css',
+          cwd: 'src',
+          src: ['**/*.css'],
+          dest: 'dist',
           ext: '.min.css'
         }]
       }
@@ -47,10 +47,24 @@ module.exports = function(grunt) {
           },
           files: [{
              expand: true,
+             cwd: "src",
              src: '**/*.html',
-             dest: 'dist/'
+             dest: 'dist/',
+             ext: ".html"
           }]
        }
+    },
+
+    /* Copy the "fixed" images that don't go through processing into the dist files */
+    copy: {
+      dev: {
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: ['**/*.{gif,jpg,png}'],
+          dest: 'dist'
+        }]
+      }
     },
 
 
@@ -102,17 +116,6 @@ module.exports = function(grunt) {
         },
       },
     },
-
-    /* Copy the "fixed" images that don't go through processing into the images/directory */
-    copy: {
-      dev: {
-        files: [{
-          expand: true,
-          src: 'images_src/fixed/*.{gif,jpg,png}',
-          dest: 'images/'
-        }]
-      },
-    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
@@ -122,7 +125,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-mkdir');
-  grunt.registerTask('images', ['clean', 'mkdir', 'copy', 'responsive_images']);
-  grunt.registerTask('minify', ['uglify', 'cssmin', "htmlmin"]);
+  grunt.registerTask('images', ['clean', 'mkdir', 'responsive_images']);
+  grunt.registerTask('default', ['uglify', 'cssmin', "htmlmin", "copy"]);
 
 };
