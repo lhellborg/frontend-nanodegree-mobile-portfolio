@@ -71,3 +71,37 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 * <a href="http://nicoledominguez.com/portfolio/">http://nicoledominguez.com/portfolio/</a>
 * <a href="http://www.roxannecook.com/">http://www.roxannecook.com/</a>
 * <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
+
+
+
+Time to generate pizzas on load: 11.640000000000008ms
+main.js:468 Time to resize pizzas: 46946.21000000001ms
+main.js:496 Average time to generate last 10 frames: 28.51249999999959ms
+main.js:496 Average time to generate last 10 frames: 23.757500000000437ms
+main.js:496 Average time to generate last 10 frames: 21.522500000000583ms
+main.js:496 Average time to generate last 10 frames: 22.95099999999802ms
+main.js:496 Average time to generate last 10 frames: 24.48649999999907ms
+main.js:496 Average time to generate last 10 frames: 24.50249999999869ms
+main.js:496 Average time to generate last 10 frames: 21.161000000003696ms
+main.js:468 Time to resize pizzas: 0.569999999992433ms
+main.js:468 Time to resize pizzas: 0.5049999999973807ms
+main.js:468 Time to resize pizzas: 0.555000000000291ms
+main.js:468 Time to resize pizzas: 0.5500000000029104ms
+main.js:468 Time to resize pizzas: 0.5849999999918509ms
+main.js:468 Time to resize pizzas: 0.5050000000046566ms
+main.js:496 Average time to generate last 10 frames: 23.877500000006695ms
+main.js:496 Average time to generate last 10 frames: 24.992499999987196ms
+main.js:496 Average time to generate last 10 frames: 24.178999999994993ms
+main.js:496 Average time to generate last 10 frames: 22.491499999989173ms
+main.js:496 Average time to generate last 10 frames: 23.526499999998485ms
+main.js:496 Average time to generate last 10 frames: 22.010000000006404ms
+main.js:496 Average time to generate last 10 frames: 21.57250000000058ms
+main.js:496 Average time to generate last 10 frames: 20.923499999998604ms
+main.js:496 Average time to generate last 10 frames: 23.134499999988474ms
+main.js:496 Average time to generate last 10 frames: 22.13399999999674ms
+main.js:496 Average time to generate last 10 frames: 22.020999999999184ms
+main.js:496 Average time to generate last 10 frames: 19.90900000000547ms
+main.js:496 Average time to generate last 10 frames: 41.39950000001117ms
+main.js:496 Average time to generate last 10 frames: 42.3395000000135ms
+main.js:496 Average time to generate last 10 frames: 43.020499999995806ms
+main.js:496 Average time to generate last 10 frames: 43.89749999999767ms
