@@ -2,3 +2,5 @@ node_modules
 src/images_src
 src/views/timelines
 dist/images_src
+images_src
+images
