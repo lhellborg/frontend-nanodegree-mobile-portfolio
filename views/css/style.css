@@ -19,6 +19,7 @@ input {
 
 form {
   display: inline-block;
+  min-height: 48px;
 }
 
 .centered {
@@ -50,4 +51,8 @@ form {
 
  .container {
   background-color: rgba(240, 60, 60, 0.8);
+}
+
+#pizzaStore {
+  min-height: 200px;
 }

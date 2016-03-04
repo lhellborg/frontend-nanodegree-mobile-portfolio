@@ -421,40 +421,28 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-  //function determineDx (elem, size) {
-    //var oldWidth = elem.offsetWidth;
-    //var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
-    //var oldSize = oldWidth / windowWidth;
-
-    // Optional TODO: change to 3 sizes? no more xl?
-    // Changes the slider value to a percent width
-    function sizeSwitcher (size) {
-      switch(size) {
-        case "1":
-          return "25%";
-        case "2":
-          return "33%";
-        case "3":
-          return "50%";
-        default:
-          console.log("bug in sizeSwitcher");
-      }
+  // Changes the slider value to a percent width that will be returned and used as new width of the pizzas
+  function sizeSwitcher (size) {
+    switch(size) {
+      case "1":
+        return "25%";
+      case "2":
+        return "33%";
+      case "3":
+        return "50%";
+      default:
+        console.log("bug in sizeSwitcher");
     }
-
-    var newWidth = sizeSwitcher(size);
-    //var dx = (newSize - oldSize) * windowWidth;
-
-    //return dx;
-  //}
-
-
+  }
+  // the new width of the pizzas
+  var newWidth = sizeSwitcher(size);
+  // selecting all pizzas
   var allPizzas = document.querySelectorAll(".randomPizzaContainer");
-  // Iterates through pizza elements on the page and changes their widths
+
+  // Iterates through pizza elements on the page and changes their widths to the new width
+  //returned by the sizeSwitcher function as a percentage of the width
   function changePizzaSizes(size) {
     for (var i = 0; i < allPizzas.length; i++) {
-      //var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      //var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
       allPizzas[i].style.width = newWidth;
     }
   }
@@ -501,14 +489,17 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
+
   frame++;
   window.performance.mark("mark_start_frame");
-
+  // select all items that should move
   var items = document.querySelectorAll('.mover');
+  // get the number of pixels from the top of the body, since this is measured in layout phase
+  // it has been taken out from the for loop to prevent forced synchronous layout and speed up the scolling
   var scrollTop = document.body.scrollTop
 
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin(( scrollTop/ 1250) + (i % 5));
+    var phase = Math.sin((scrollTop/ 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
