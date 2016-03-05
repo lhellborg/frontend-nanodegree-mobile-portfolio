@@ -36,14 +36,14 @@ Time to resize pizzas: 0.569999999992433ms
 
 **start code**
 
-The function determineDx is removed
+The function determineDx will be removed
 ```
   function determineDx (elem, size) {
     var oldWidth = elem.offsetWidth;
     var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
     var oldSize = oldWidth / windowWidth;
 ```
-This part is changed to percentages
+This part will be changed to percentages
 ```   
     function sizeSwitcher (size) {
       switch(size) {
@@ -68,7 +68,7 @@ there are no dx anymore so these 2 rows will be removed
     return dx;
   }
 ```
-The function changePizzaSizes looping over both a layout check and a style event causing forced synchronous layout. Since we change the size of the pizzas to a percentage of their width all lines except the styling can be removed from this function
+The function changePizzaSizes looping over both a layout check and a style event causing forced synchronous layout. Since we change the size of the pizzas to a percentage of their width all lines except the styling can be removed from this function. Besides we have the DRY rule so all the randomPizzaContainers will be collected in a variable.
 ```
   function changePizzaSizes(size) {
     for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
@@ -101,7 +101,7 @@ Taking out the layout calculation from the `for loop` where the style sets, is t
   }
   ```
 
-The new width of the pizzas
+The new width of the pizzas will be in percentages
   `var newWidth = sizeSwitcher(size);`
 
 Selecting all pizzas
@@ -126,19 +126,17 @@ Average time to generate last 10 frames: 0.8574999999998909ms
 
 In this for loop a layout check is called from the scrollTop before the style is set of the pizzas causing a forced synchronous layout and all that extra time when scrolling
 ```
-  var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
-```
+``
 **code change**
 
 The variable `scrollTop` gets the number of pixels from the top of the body, since this is measured in layout phase it has been taken out from the `for loop` to prevent forced synchronous layout and speed up the scolling
+``
+  var scrollTop = document.body.scrollTop
 
-  `var scrollTop = document.body.scrollTop`
-
-```
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((scrollTop/ 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
