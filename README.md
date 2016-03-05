@@ -4,7 +4,7 @@
 The website (index.html) is optimized for mobile devices with pageSpeed. 
 
 ###Critical rendering path
-The critical rendering path, CRP, has been optimized as far as possible with _inlining_ all `critical CSS` and _asynchronous_ running of the `analytics js scripts` and a _media query_ for `print css`. I _reduced_ the size of the **images** with both a `grunt script` and **pageSpeeds recommendations** as well as minifying the `HTML code and CSS and js files`. 
+The critical rendering path, CRP, has been optimized as far as possible with _inlining_ all `critical CSS` and _asynchronous_ running of the `analytics js scripts` and a _media query_ for `print css`. I _reduced_ the size of the **images** with both a `grunt script` and **pageSpeeds recommendations** as well as minifying the `HTML code and CSS and js files. 
 I experimented with the styling in the HTML elements for the upper half of the page to render even faster and to reduce the number of nodes to go through for the styles. 
 ####Analyze of critical rendering path 
 - The **number of critical resuorces** is only one
@@ -131,10 +131,11 @@ In this for loop a layout check is called from the scrollTop before the style is
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 ``
+
 **code change**
 
 The variable `scrollTop` gets the number of pixels from the top of the body, since this is measured in layout phase it has been taken out from the `for loop` to prevent forced synchronous layout and speed up the scolling
-``
+```
   var scrollTop = document.body.scrollTop
 
   for (var i = 0; i < items.length; i++) {
