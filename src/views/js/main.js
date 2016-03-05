@@ -496,7 +496,7 @@ function updatePositions() {
   var items = document.querySelectorAll('.mover');
   // get the number of pixels from the top of the body, since this is measured in layout phase
   // it has been taken out from the for loop to prevent forced synchronous layout and speed up the scolling
-  var scrollTop = document.body.scrollTop
+  var scrollTop = document.body.scrollTop;
 
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((scrollTop/ 1250) + (i % 5));
