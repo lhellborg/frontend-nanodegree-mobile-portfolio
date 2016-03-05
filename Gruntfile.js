@@ -5,8 +5,7 @@
   "grunt clean" removes the images directory
   "grunt responsive_images" re-processes images without removing the old ones
 */
-
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   grunt.initConfig({
 
@@ -14,7 +13,7 @@ module.exports = function(grunt) {
 
     // minifying the .js code and save it with a .min extension
     uglify: {
-       target: {
+      target: {
         files: [{
           expand: true,
           cwd: 'src',
@@ -40,19 +39,19 @@ module.exports = function(grunt) {
 
     // minifying HTML
     htmlmin: {
-       dist: {
-          options: {
-             removeComments: true,
-             collapseWhitespace: true
-          },
-          files: [{
-             expand: true,
-             cwd: "src",
-             src: '**/*.html',
-             dest: 'dist/',
-             ext: ".html"
-          }]
-       }
+      dist: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: [{
+          expand: true,
+          cwd: "src",
+          src: '**/*.html',
+          dest: 'dist/',
+          ext: ".html"
+        }]
+      }
     },
 
     /* Copy the "fixed" images that don't go through processing into the dist files */
@@ -67,24 +66,23 @@ module.exports = function(grunt) {
       }
     },
 
-
     responsive_images: {
       dev: {
 
         options: {
           engine: 'im',
           sizes: [{
-              name: 'small',
-              quality: 60,
-              width: 100
-            },{
-              name: 'medium',
-              width: 100
-            },{
-              name: "large",
-              width: 200,
-              // suffix: "_x2"
-              // quality: 60
+            name: 'small',
+            quality: 60,
+            width: 100
+          }, {
+            name: 'medium',
+            width: 100
+          }, {
+            name: "large",
+            width: 200,
+            // suffix: "_x2"
+            // quality: 60
           }]
         },
 
