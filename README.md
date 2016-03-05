@@ -130,7 +130,7 @@ In this for loop a layout check is called from the scrollTop before the style is
     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
-``
+```
 
 **code change**
 
