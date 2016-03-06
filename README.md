@@ -25,8 +25,9 @@ From the `src` code
 
 ##Optimizations for pizza.html site 
 In animations like scrolling and resizing it is important that the frames per second is 60 or higher which means that each frame will have only 16 ms or less to run, aim for 10ms. 
-In the views/js/main.js there were two major flaws causing forced reflow and a lot of time to resize pizza and scrolling.
+In the `views/js/main.js` there were two major flaws causing forced reflow and a lot of time to resize pizza and scrolling.
 
+###views/js/main.js
 A very cool tool to log the time taken for different functions by timing API, made it very helpful to see the improvements of the code changes.
 ####resize pizzas
 #####First test  
@@ -148,6 +149,13 @@ The variable `scrollTop` gets the number of pixels from the top of the body, sin
 
 -The image of the pizzaplace was too large at first (>2Mb) so that had to be reduced. I managed to get it down to 2 Kb which is alright on small devices but kind of corny on larger devices.
 
+
+###views/css/style.css
+To increase a sites performance we can hardware-accelerate graphics-intensive CSS features by offloading them to the GPU (Graphics Processing Unit) for better rendering performance in the browser. This can be triggered by including the `transform: translateZ(0);` declaration. 
+Other styles that can do the same trick are:
+  `perspective: 1000;`
+  `backface-visibility: hidden;`
+  `transform: translate3d(0,0,0);`
 
 
 
