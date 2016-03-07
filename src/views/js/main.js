@@ -552,14 +552,13 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function () {
-  //to get the total number of pizzzas to fill up the screen, the number of rows and columns needed is calculated.
-  //a column and a row is equal to 256 px
-  //the variable cols calculate the number of columns based on the document.body which fill up the screen of the window divided by s
+  //to get the total number of pizzas to fill up the screen, the number of rows needed is calculated.
+  //a row is equal to 256 px
   //the variable rows calculate the number of rows based on the available height of the (window screen)/s
   //the total number of pizzas is then cols*rows, this will for most mobile deices be less than 24 pizzas
   var s = 256;
-  //Matrh.ceil() rounded upwards to the nearest integer to fill the screen with pizzas
-  var cols = Math.ceil(document.body.clientWidth/s);
+  var cols = 8;
+  //Math.ceil() rounded upwards to the nearest integer to fill the screen with pizzas
   var rows = Math.ceil(window.screen.availHeight/s);
   var totalPizzas = cols*rows;
 

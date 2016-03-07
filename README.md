@@ -162,10 +162,9 @@ Declaring the phase variable (var phase;) outside the loop will prevent it from 
 ```
 
 
-To get the total number of pizzzas to fill up the screen, the number of rows and columns needed, is calculated.
-A column and a row is equal to 256 px each.
+To get the total number of pizzas to fill up the screen, the number of rows needed, is calculated.
 
-The variable `cols` calculate the number of columns based on the `document.body` which fill up the screen of the window divided by s. Since the whole width of the body is visualized in a screen, with a different pixelsize than the device width, I wanted to calculate the number of columns based on the body since the pizzas are attached to this element.
+A row is equal to 256 px each.
 
 The variable `rows` calculate the number of rows based on the available height of the `window.screen/s`. Since the whole body of the height is not shown at the same time, the columns are calculated on the window height instead of the body height.
 
@@ -175,7 +174,6 @@ The total number of pizzas is then `cols*rows`, this will for most mobile device
 
 `Math.ceil()` rounded upwards to the nearest integer to fill the screen with pizzas
 ```
-var cols = Math.ceil(document.body.clientWidth/s);
 var rows = Math.ceil(window.screen.availHeight/s);
 var totalPizzas = cols*rows;
 ```
