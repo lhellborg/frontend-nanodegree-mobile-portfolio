@@ -168,9 +168,9 @@ A row is equal to 256 px each.
 
 The variable `rows` calculate the number of rows based on the available height of the `window.screen/s`. Since the whole body of the height is not shown at the same time, the columns are calculated on the window height instead of the body height.
 
-The total number of pizzas is then `cols*rows`, this will for most mobile devices be less than 24 pizzas
-
+The total number of pizzas is then `cols*rows`.
 `var s = 256;`
+`var cols = 8;`
 
 `Math.ceil()` rounded upwards to the nearest integer to fill the screen with pizzas
 ```
