@@ -537,9 +537,17 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function () {
-  var cols = 8;
+  //to get the total number of pizzzas to fill up the screen, the number of rows and columns needed is calculated.
+  //a column and a row is equal to 256 px
+  //the variable cols calculate the number of columns based on the available width of the window/256
+  //the variable rows calculate the number of rows based on the available height of the window/256
+  //the total number of pizzas is then cols*rows
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var cols = window.screen.availWidth/s;
+  var rows = window.screen.availHeight/s;
+  var totalPizzas = cols*rows;
+
+  for (var i = 0; i < totalPizzas; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
