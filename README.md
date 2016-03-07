@@ -137,8 +137,8 @@ The total number of moving pizzas was set to 200 but that will be calculated bas
 
 **code change**
 
-The variable `scrollTop` gets the number of pixels from the top of the body, since this is measured in layout phase it has been taken out from the `for loop` to prevent forced synchronous layout and speed up the scolling
-```
+The variable `scrollTop` gets the number of pixels from the top of the body, since this is measured in layout phase it has been taken out from the `for loop` to prevent forced synchronous layout and speed up the scrolling
+
 Select all items that should move with a getElementsByClassName call since it is faster than querySelector.
 
 `var items = document.getElementsByClassName('mover');`
@@ -152,7 +152,7 @@ Get the number of pixels from the top of the body, since this is measured in lay
 `var scrollTop = document.body.scrollTop;`
 
 Declaring the phase variable (var phase;) outside the loop will prevent it from being created every time the loop is executed.
-  ```
+```
   var phase;
 
   for (var i = 0; i < itemLength; i++) {
