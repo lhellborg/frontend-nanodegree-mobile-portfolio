@@ -204,8 +204,15 @@ var movingPizzas1 = document.getElementById("movingPizzas1");
 QuerySelector has been replaced with the appropriate getElementsByID or getElementsByClassName for faster API call
 
 The array length as been calculated in a seperate variable when called in a for loop so the iteration over the array does not have to be done in a loop.
+`var itemLength = items.length;`
+`var allPizzasLength = allPizzas.length;`
 
 Variables declared within a loop that makes a DOM call has been removed from within the loop and put outside to reduce the number of DOM calls.
+`var elem;`
+`var pizzaSize = document.getElementById("pizzaSize").innerHTML`
+`var pizzasDiv = document.getElementById("randomPizzas");`
+`var pizzaSize = document.getElementById("pizzaSize").innerHTML;`
+
 
 ###views/css/style.css
 To increase a sites performance we can hardware-accelerate graphics-intensive CSS features by offloading them to the GPU (Graphics Processing Unit) for better rendering performance in the browser. This can be triggered by including the `transform: translateZ(0);` declaration. 

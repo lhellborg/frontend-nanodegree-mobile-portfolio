@@ -421,7 +421,7 @@ var pizzaElementGenerator = function (i) {
 var resizePizzas = function (size) {
   window.performance.mark("mark_start_resize"); // User Timing API function
 
-  //LH declare variable pizzaSize outside of the changeSliderLabel with a getElementById for faster API call
+  //declare variable pizzaSize outside of the changeSliderLabel with a getElementById for faster API call
   var pizzaSize = document.getElementById("pizzaSize").innerHTML
 
   // Changes the value for the size of the pizza above the slider
@@ -461,7 +461,7 @@ var resizePizzas = function (size) {
   // selecting all pizzas with a getElementsByClassName more efficient than querySelector
   var allPizzas = document.getElementsByClassName("randomPizzaContainer");
 
-  //LH save the array length in a local variable, so the array's length property is not accessed to check its value at each iteration.
+  //save the array length in a local variable, so the array's length property is not accessed to check its value at each iteration.
   var allPizzasLength = allPizzas.length;
 
   // Iterates through pizza elements on the page and changes their widths to the new width
@@ -483,7 +483,7 @@ var resizePizzas = function (size) {
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
-//LH declare the pizzasDiv variable outside the loop, so the function only makes one DOM call.
+//declare the pizzasDiv variable outside the loop, so the function only makes one DOM call.
 var pizzasDiv = document.getElementById("randomPizzas");
 
 
