@@ -421,17 +421,20 @@ var pizzaElementGenerator = function (i) {
 var resizePizzas = function (size) {
   window.performance.mark("mark_start_resize"); // User Timing API function
 
+  //LH declare variable pizzaSize outside of the changeSliderLabel with a getElementById for faster API call
+  var pizzaSize = document.getElementById("pizzaSize").innerHTML
+
   // Changes the value for the size of the pizza above the slider
   function changeSliderLabel(size) {
     switch (size) {
     case "1":
-      document.querySelector("#pizzaSize").innerHTML = "Small";
+      pizzaSize = "Small";
       return;
     case "2":
-      document.querySelector("#pizzaSize").innerHTML = "Medium";
+      pizzaSize = "Medium";
       return;
     case "3":
-      document.querySelector("#pizzaSize").innerHTML = "Large";
+      pizzaSize = "Large";
       return;
     default:
       console.log("bug in changeSliderLabel");
@@ -455,13 +458,16 @@ var resizePizzas = function (size) {
   }
   // the new width of the pizzas
   var newWidth = sizeSwitcher(size);
-  // selecting all pizzas
-  var allPizzas = document.querySelectorAll(".randomPizzaContainer");
+  // selecting all pizzas with a getElementsByClassName more efficient than querySelector
+  var allPizzas = document.getElementsByClassName("randomPizzaContainer");
+
+  //LH save the array length in a local variable, so the array's length property is not accessed to check its value at each iteration.
+  var allPizzasLength = allPizzas.length;
 
   // Iterates through pizza elements on the page and changes their widths to the new width
   //returned by the sizeSwitcher function as a percentage of the width
   function changePizzaSizes(size) {
-    for (var i = 0; i < allPizzas.length; i++) {
+    for (var i = 0; i < allPizzasLength; i++) {
       allPizzas[i].style.width = newWidth;
     }
   }
@@ -477,9 +483,12 @@ var resizePizzas = function (size) {
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
+//LH declare the pizzasDiv variable outside the loop, so the function only makes one DOM call.
+var pizzasDiv = document.getElementById("randomPizzas");
+
+
 // This for-loop actually creates and appends all of the pizzas when the page loads
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -511,14 +520,20 @@ function updatePositions() {
 
   frame++;
   window.performance.mark("mark_start_frame");
-  // select all items that should move
-  var items = document.querySelectorAll('.mover');
+  // select all items that should move with a getElementsByClassName call since it is faster than querySelector
+  var items = document.getElementsByClassName('mover');
+
+  //teh length of the array items to be used in the for loop to not have to calculate the length every time in the loop
+  var itemLength = items.length;
   // get the number of pixels from the top of the body, since this is measured in layout phase
   // it has been taken out from the for loop to prevent forced synchronous layout and speed up the scolling
   var scrollTop = document.body.scrollTop;
 
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((scrollTop / 1250) + (i % 5));
+  //Declaring the phase variable (var phase;) outside the loop will prevent it from being created every time the loop is executed.
+  var phase;
+
+  for (var i = 0; i < itemLength; i++) {
+    phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -539,23 +554,30 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function () {
   //to get the total number of pizzzas to fill up the screen, the number of rows and columns needed is calculated.
   //a column and a row is equal to 256 px
-  //the variable cols calculate the number of columns based on the available width of the window/256
-  //the variable rows calculate the number of rows based on the available height of the window/256
+  //the variable cols calculate the number of columns based on the document.body which fill up the screen of the window divided by s
+  //the variable rows calculate the number of rows based on the available height of the (window screen)/s
   //the total number of pizzas is then cols*rows
   var s = 256;
-  var cols = window.screen.availWidth/s;
-  var rows = window.screen.availHeight/s;
+  //Matrh.ceil() rounded upwards to the nearest integer to fill the screen with pizzas
+  var cols = Math.ceil(document.body.clientWidth/s);
+  var rows = Math.ceil(window.screen.availHeight/s);
   var totalPizzas = cols*rows;
 
+  //Declaring the elem variable (var elem;) outside the loop will prevent it from being created every time the loop is executed.
+  var elem;
+
+  //change the call to getElementById since it is faster than querySelecctor and moved it to a variable outside of the loop
+  var movingPizzas1 = document.getElementById("movingPizzas1");
+
   for (var i = 0; i < totalPizzas; i++) {
-    var elem = document.createElement('img');
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    movingPizzas1.appendChild(elem);
   }
   updatePositions();
 });

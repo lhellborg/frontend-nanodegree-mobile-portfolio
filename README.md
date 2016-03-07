@@ -121,7 +121,7 @@ Iterates through pizza elements on the page and changes their widths to the new 
 #####First test 
 Average time to generate last 10 frames: 28.51249999999959ms
 #####After change 
-Average time to generate last 10 frames: 0.8574999999998909ms
+Average time to generate last 10 frames: 0.22399999999997816ms
 
 **start code**
 
@@ -132,6 +132,8 @@ In this for loop a layout check is called from the scrollTop before the style is
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 ```
+
+The total number of moving pizzas was set to 200 but that will be calculated based on the window size
 
 **code change**
 
@@ -145,9 +147,39 @@ The variable `scrollTop` gets the number of pixels from the top of the body, sin
   }
 ```
 
--Since the performance was for mobiles I increased the size of the buttons to `min-height = 48px` to be able to touch only one.
 
--The image of the pizzaplace was too large at first (>2Mb) so that had to be reduced. I managed to get it down to 2 Kb which is alright on small devices but kind of corny on larger devices.
+To get the total number of pizzzas to fill up the screen, the number of rows and columns needed, is calculated.
+A column and a row is equal to 256 px each
+The variable `cols` calculate the number of columns based on the `document.body` which fill up the screen of the window divided by s. Since the whole width of the body is visualized in a screen, with a different pixelsize than the device width, I wanted to calculate hte number of columns based on the body since the pizzas are attached to this element.
+The variable `rows` calculate the number of rows based on the available height of the `window.screen/s`. Since the whole body of the height is not shown at teh same time, the columns are calculated on the window height instead of the body height.
+The total number of pizzas is then `cols*rows`, this will for most mobile devices be less than 24 pizzas
+`var s = 256;`
+`Math.ceil()` rounded upwards to the nearest integer to fill the screen with pizzas
+```
+var cols = Math.ceil(document.body.clientWidth/s);
+var rows = Math.ceil(window.screen.availHeight/s);
+var totalPizzas = cols*rows;
+```
+  
+Declaring the elem variable (var elem;) outside the loop will prevent it from being created every time the loop is executed.
+`var elem;`
+Change the call to `getElementById` since it is faster than `querySelecctor` and moved it to a variable outside of the loop
+```
+var movingPizzas1 = document.getElementById("movingPizzas1");
+
+  for (var i = 0; i < totalPizzas; i++) {
+    elem = document.createElement('img');
+    elem.className = 'mover';
+    elem.src = "images/pizza.png";
+    elem.style.height = "100px";
+    elem.style.width = "73.333px";
+    elem.basicLeft = (i % cols) * s;
+    elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    movingPizzas1.appendChild(elem);
+  }
+  updatePositions();
+});
+```
 
 
 ###views/css/style.css
@@ -156,6 +188,12 @@ Other styles that can do the same trick are:
   `perspective: 1000;`
   `backface-visibility: hidden;`
   `transform: translate3d(0,0,0);`
+
+-Since the performance was for mobiles I increased the size of the buttons to `min-height = 48px` to be able to touch only one.
+
+###Other
+-The image of the pizzaplace was too large at first (>2Mb) so that had to be reduced. I managed to get it down to 2 Kb which is alright on small devices but kind of corny on larger devices.
+
 
 
 
