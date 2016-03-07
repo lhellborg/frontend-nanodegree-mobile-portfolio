@@ -29,7 +29,7 @@ In the `views/js/main.js` there were two major flaws causing forced reflow and a
 
 ###views/js/main.js
 A very cool tool to log the time taken for different functions by timing API, made it very helpful to see the improvements of the code changes.
-####resize pizzas
+####Resize pizzas
 #####First test  
 Time to resize pizzas: 46946.21000000001ms
 #####After changes 
@@ -117,7 +117,7 @@ Iterates through pizza elements on the page and changes their widths to the new 
   }
 ```
 
-####scrolling
+####Scrolling
 #####First test 
 Average time to generate last 10 frames: 28.51249999999959ms
 #####After change 
@@ -139,21 +139,40 @@ The total number of moving pizzas was set to 200 but that will be calculated bas
 
 The variable `scrollTop` gets the number of pixels from the top of the body, since this is measured in layout phase it has been taken out from the `for loop` to prevent forced synchronous layout and speed up the scolling
 ```
-  var scrollTop = document.body.scrollTop
+Select all items that should move with a getElementsByClassName call since it is faster than querySelector.
 
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((scrollTop/ 1250) + (i % 5));
+`var items = document.getElementsByClassName('mover');`
+
+The length of the array items to be used in the for loop to not have to calculate the length every time in the loop.
+
+`var itemLength = items.length;`
+
+Get the number of pixels from the top of the body, since this is measured in layout phase it has been taken out from the for loop to prevent forced synchronous layout and speed up the scolling.
+
+`var scrollTop = document.body.scrollTop;`
+
+Declaring the phase variable (var phase;) outside the loop will prevent it from being created every time the loop is executed.
+  ```
+  var phase;
+
+  for (var i = 0; i < itemLength; i++) {
+    phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 ```
 
 
 To get the total number of pizzzas to fill up the screen, the number of rows and columns needed, is calculated.
-A column and a row is equal to 256 px each
-The variable `cols` calculate the number of columns based on the `document.body` which fill up the screen of the window divided by s. Since the whole width of the body is visualized in a screen, with a different pixelsize than the device width, I wanted to calculate hte number of columns based on the body since the pizzas are attached to this element.
-The variable `rows` calculate the number of rows based on the available height of the `window.screen/s`. Since the whole body of the height is not shown at teh same time, the columns are calculated on the window height instead of the body height.
+A column and a row is equal to 256 px each.
+
+The variable `cols` calculate the number of columns based on the `document.body` which fill up the screen of the window divided by s. Since the whole width of the body is visualized in a screen, with a different pixelsize than the device width, I wanted to calculate the number of columns based on the body since the pizzas are attached to this element.
+
+The variable `rows` calculate the number of rows based on the available height of the `window.screen/s`. Since the whole body of the height is not shown at the same time, the columns are calculated on the window height instead of the body height.
+
 The total number of pizzas is then `cols*rows`, this will for most mobile devices be less than 24 pizzas
+
 `var s = 256;`
+
 `Math.ceil()` rounded upwards to the nearest integer to fill the screen with pizzas
 ```
 var cols = Math.ceil(document.body.clientWidth/s);
@@ -161,10 +180,11 @@ var rows = Math.ceil(window.screen.availHeight/s);
 var totalPizzas = cols*rows;
 ```
   
-Declaring the elem variable (var elem;) outside the loop will prevent it from being created every time the loop is executed.
-`var elem;`
-Change the call to `getElementById` since it is faster than `querySelecctor` and moved it to a variable outside of the loop
+Declaring the elem variable `var elem;` outside the loop will prevent it from being created every time the loop is executed.
+
+Change the call to `getElementById` since it is faster than `querySelecctor` and move it to a variable outside of the loop
 ```
+var elem;
 var movingPizzas1 = document.getElementById("movingPizzas1");
 
   for (var i = 0; i < totalPizzas; i++) {
@@ -180,7 +200,12 @@ var movingPizzas1 = document.getElementById("movingPizzas1");
   updatePositions();
 });
 ```
+#####Other code changes
+QuerySelector has been replaced with the appropriate getElementsByID or getElementsByClassName for faster API call
 
+The array length as been calculated in a seperate variable when called in a for loop so the iteration over the array does not have to be done in a loop.
+
+Variables declared within a loop that makes a DOM call has been removed from within the loop and put outside to reduce the number of DOM calls.
 
 ###views/css/style.css
 To increase a sites performance we can hardware-accelerate graphics-intensive CSS features by offloading them to the GPU (Graphics Processing Unit) for better rendering performance in the browser. This can be triggered by including the `transform: translateZ(0);` declaration. 

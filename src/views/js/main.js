@@ -556,7 +556,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //a column and a row is equal to 256 px
   //the variable cols calculate the number of columns based on the document.body which fill up the screen of the window divided by s
   //the variable rows calculate the number of rows based on the available height of the (window screen)/s
-  //the total number of pizzas is then cols*rows
+  //the total number of pizzas is then cols*rows, this will for most mobile deices be less than 24 pizzas
   var s = 256;
   //Matrh.ceil() rounded upwards to the nearest integer to fill the screen with pizzas
   var cols = Math.ceil(document.body.clientWidth/s);
