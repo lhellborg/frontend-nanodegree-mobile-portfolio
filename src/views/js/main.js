@@ -422,7 +422,7 @@ var resizePizzas = function (size) {
   window.performance.mark("mark_start_resize"); // User Timing API function
 
   //declare variable pizzaSize outside of the changeSliderLabel with a getElementById for faster API call
-  var pizzaSize = document.getElementById("pizzaSize").innerHTML
+  var pizzaSize = document.getElementById("pizzaSize").innerHTML;
 
   // Changes the value for the size of the pizza above the slider
   function changeSliderLabel(size) {

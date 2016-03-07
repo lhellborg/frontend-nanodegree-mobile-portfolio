@@ -209,7 +209,7 @@ The array length as been calculated in a seperate variable when called in a for 
 
 Variables declared within a loop that makes a DOM call has been removed from within the loop and put outside to reduce the number of DOM calls.
 `var elem;`
-`var pizzaSize = document.getElementById("pizzaSize").innerHTML`
+var pizzaSize = document.getElementById("pizzaSize").innerHTML`
 `var pizzasDiv = document.getElementById("randomPizzas");`
 `var pizzaSize = document.getElementById("pizzaSize").innerHTML;`
 
